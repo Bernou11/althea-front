@@ -581,54 +581,197 @@ body {
   display: inline-block;
 }
 
-/* ----- RESPONSIVE BREAKPOINTS ----- */
+@media (max-width: 1024px) {
+  .about-content, .top-container, .bottom-container, .footer-top {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .left-content, .right-content, .top-left-card, .top-right-card,
+  .bottom-left-card, .bottom-right-card {
+    width: 90% !important;
+    margin: 1.5em 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    min-width: 0;
+  }
 
-@media (max-width: 1080px) {
-  .slogan { font-size: 2rem; }
-  .left-container { padding-left: 2em; }
+  .stat {
+    margin-left: 1em !important;
+    margin-top: 1em !important;
+    width: 90%;
+    max-width: 300px;
+  }
+
+  .features-logo, .about-logo, .contact-logo {
+    height: 7vw;
+    min-height: 40px;
+  }
 }
 
-@media (max-width: 900px) {
-  .layout { flex-direction: column; }
-  .left-container{
-    max-width: 100vw;
-    width: 100vw;
-    padding: 1.4em;
+@media (max-width: 768px) {
+  .about-title, .features-title, .contact-title {
+    font-size: 2.3em;
   }
-  .right-container {
+  .about-text, .right-card-text, .left-card-text, .contact-text {
+    font-size: 1em !important;
+  }
+
+  .logo {
+    height: 10vw;
+  }
+
+  .about-logo {
     display: none;
   }
+
+  .bg-blur-ellipse.bg-blur-ellipse-red {
+    display: none;
+  }
+
+  .bg-blur-ellipse.bg-blur-ellipse-blue {
+    display: none;
+  }
+
+  .features-logo {
+    display: none;
+  }
+
   .phone-image {
     display: none;
   }
-  .bg-blur-ellipse-blue {
+
+  .about {
+    height: auto;
+    min-height: 100vh;
+    padding: 0.5em 0;
+  }
+
+  .contact {
+    height: 43em;
+  }
+
+  .contact-text {
+    text-align: center;
+    margin-left: 7em;
+    margin-top: 0.2em;
+  }
+
+  .contact-content {
+    flex-direction: column;
+  }
+  .contact-left, .contact-right {
+    width: 100% !important;
+    margin-left: 0;
+    margin-top: 2em;
+    align-items: center;
+  }
+
+  .contact-form {
+    width: 95vw;
+    max-width: 95vw;
+    margin: 0 auto;
+  }
+  .contact-input, .contact-form-button {
+    width: 100% !important;
+    font-size: 1em;
+    margin-top: 1em;
+  }
+
+  .slogan-footer {
+    font-size: 1em;
+    text-align: center;
+    margin-left: 1em;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+  }
+  .footer-content {
+    width: 95vw;
+    margin-left: 0;
+    padding: 0 1vw;
+  }
+  .footer-top, .footer-bottom {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7em;
+  }
+
+  .vertical-line-top, .vertical-line-bottom {
     display: none;
   }
-  .bg-blur-ellipse-red {
+
+  .footer-top-logo-and-slogan {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .footer-top-networks-icons {
+    justify-content: center;
+    width: 100%;
+    margin-top: 0;
+    margin-right: 3.2em;
+  }
+
+  .logo-fb, .logo-insta, .logo-tiktok, .logo-yt, .logo-footer {
+    height: 2em;
+    margin: 0 0.7em;
+  }
+
+  /* Cards in features mobile-friendly */
+  .top-left-card, .top-right-card, .bottom-left-card, .bottom-right-card {
+    flex-direction: column;
+    height: auto !important;
+    padding-bottom: 1.5em;
+    align-self: center;
+  }
+  .phone-image-fetures {
+    width: 85%;
+    margin: 1em auto !important;
+    display: block;
+  }
+
+  .confidentialite {
+    margin-right: 1em;
+  }
+
+  .utilisation {
+    margin-right: 1.5em;
+  }
+
+  /* Logo and title alignment for small screens */
+  .about.title-logo.curved-underline {
     display: none;
+  }
+  .title-logo.curved-underline::after {
+    display: none !important;
+    content: none !important;
+    height: 0 !important;
+  }
+
+  .stat {
+    margin-left: 3.8em !important;
+  }
+
+  .about-text {
+    text-align: center !important;
+  }
+
+  .contact-logo {
+    display: none !important;
   }
 }
 
-@media (max-width: 600px) {
-  html, body, .layout {
-    width: 100vw;
-    max-width: 100vw;
+@media (max-width: 450px) {
+  .about-title, .features-title, .contact-title {
+    font-size: 1.25em;
   }
-  .left-container, .right-container {
-    padding: 0.8em 0.4em;
+  .about-text, .right-card-text, .left-card-text, .contact-text, .copyrights {
+    font-size: 0.99em;
   }
-  .logo {
-    height: 2.5em;
+  .contact-form-button {
+    padding: 0.7em 0.5em;
+    font-size: 1em;
   }
-  .slogan { font-size: 1.4rem; margin-bottom: 1rem; }
-  .description { font-size: 1rem; }
-  .approuve { font-size: 0.85rem;}
-  .med-img { width: 30px; height: 30px; }
-  .phone-image { width: 98vw; max-width: 220px; }
-  .bg-blur-ellipse-blue, .bg-blur-ellipse-red { min-width: 40px; min-height: 18px; }
-}
-
-@media (max-width: 400px) {
-  .left-container, .right-container { padding: 0.22em; }
-  .slogan { font-size: 1.12rem; }
 }
