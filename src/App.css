@@ -484,7 +484,7 @@ body {
 .footer-content {
   display: flex;
   flex-direction: column;
-  margin-left: 5.5em;
+  margin-left: 6em;
   width: 50%;
   margin-top: 1.9em;
 }
@@ -508,6 +508,13 @@ body {
 }
 
 .slogan-footer {
+  color: white;
+  margin-left: 1em;
+  padding-bottom: 2em;
+  margin-top: 0.9em;
+}
+
+.rights {
   color: white;
   margin-left: 1em;
   padding-bottom: 2em;
@@ -544,6 +551,7 @@ body {
   display: flex;
   flex-direction: row;
   width: 100%;
+  margin-left: -2.5em;
 }
 
 .copyrights {
@@ -767,11 +775,70 @@ body {
   .about-title, .features-title, .contact-title {
     font-size: 1.25em;
   }
+
   .about-text, .right-card-text, .left-card-text, .contact-text, .copyrights {
     font-size: 0.99em;
   }
+
   .contact-form-button {
     padding: 0.7em 0.5em;
     font-size: 1em;
+  }
+
+  .copyrights {
+    margin-left: 4.5em;
+    margin-top: 2em;
+  }
+
+  .rights {
+    margin-left: 4.5em;
+    margin-top: -0.5em;
+  }
+
+  .confidentialite {
+    margin-left: 5.6em;
+    margin-top: -2.5em;
+  }
+
+  .utilisation {
+    margin-left: 6em;
+    margin-top: 0.5em;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .footer {
+    background-color: #0F1017 !important;
+  }
+
+  .left-container {
+    background-color: #2B2D3F !important;
+  }
+
+  .right-container {
+    background-color: #2B2D3F !important;
+  }
+  .about-title {
+    color: #0F1017 !important;
+  }
+  .contact-title {
+    color: #0F1017 !important;
+  }
+  .about-text {
+    color: #0F1017 !important;
+  }
+  .contact-text {
+    color: #0F1017 !important;
+  }
+  .features-logo {
+    content: url("/pen_butterfly_dark.svg");
+    height: 3.5vw;
+  }
+  .approuve {
+    color: white !important;
+  }
+  .download {
+    background-color: #FFFBFA !important;
+    color : #0F1017;
   }
 }

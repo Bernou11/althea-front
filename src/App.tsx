@@ -11,7 +11,6 @@ function App() {
         const form = formRef.current;
         if (!form) return;
 
-        // Access fields by 'name' attribute
         const email = (form.elements.namedItem("contact-form-email") as HTMLInputElement).value.trim();
         const phone = (form.elements.namedItem("contact-form-phone") as HTMLInputElement).value.trim();
         const name = (form.elements.namedItem("contact-form-name") as HTMLInputElement).value.trim();
@@ -236,7 +235,7 @@ function App() {
                           Copyright © 2025
                       </p>
                       <div className="vertical-line-bottom"></div>
-                      <p className="slogan-footer">
+                      <p className="rights">
                           Tous droits réservés par Althéa
                       </p>
                       <a className="confidentialite" href="/">
