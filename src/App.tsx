@@ -1,32 +1,35 @@
 import { useRef, useState } from "react";
 import "./App.css";
+import axios from "axios";
 
 export default function App() {
     const formRef = useRef<HTMLFormElement>(null);
     const [error, setError] = useState("");
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         const form = formRef.current;
         if (!form) return;
 
         const email = (form.elements.namedItem("contact-form-email") as HTMLInputElement).value.trim();
         const phone = (form.elements.namedItem("contact-form-phone") as HTMLInputElement).value.trim();
-        const name = (form.elements.namedItem("contact-form-name") as HTMLInputElement).value.trim();
+        const nom = (form.elements.namedItem("contact-form-name") as HTMLInputElement).value.trim();
         const message = (form.elements.namedItem("contact-form-message") as HTMLInputElement).value.trim();
 
         if (!email && !phone) {
             setError("Merci de remplir au moins l'email ou le numéro de téléphone.");
-        } else if (!name || !message) {
+        } else if (!nom || !message) {
             setError("Veuillez remplir tous les champs obligatoires.");
         } else {
             setError("");
-            form.submit();
-            alert("Submited")
+            await axios.post('http://localhost:3000/api/messages', { nom, email, phone, message });
+            setSuccess("Votre message a bien été envoyé! Nous vous répondrons dans les plus brefs délais");
+            form.reset();
         }
     };
 
     const phoneRef = useRef(null);
+    const [success, setSuccess] = useState("");
 
     return (
         <div className="bg-white dark:bg-[#0F1017] text-gray-900 dark:text-gray-100 min-h-screen w-full font-sans">
@@ -102,11 +105,11 @@ export default function App() {
             <section className="w-full py-16 bg-white dark:bg-[#0F1017] flex flex-col items-center relative">
                 {/* Title and logo, centered and aligned */}
                 <div className="flex items-center mb-12">
-                    <h1 className="font-comfortaa font-bold text-[34px] sm:text-[64px] leading-tight text-center md:text-left">
+                    <h1 className="text-2xl md:text-4xl font-bold font-comfortaa pr-4 text-center ml-[4.5rem]">
                         Fonctionnalités
                     </h1>
-                    <img className="ml-6 h-16 min-h-[48px] hidden md:block dark:hidden" src="/pen_butterfly.svg" alt="logo" />
-                    <img className="ml-6 h-16 min-h-[48px] sm:hidden md:hidden" src="/pen_butterfly_dark.svg" alt="logo" />
+                    <img className="ml-6 h-12 min-h-[40px] hidden md:block dark:hidden" src="/pen_butterfly.svg" alt="logo" />
+                    <img className="ml-6 h-12 min-h-[40px] sm:hidden md:hidden" src="/pen_butterfly_dark.svg" alt="logo" />
                 </div>
                 {/* Cards Grid (2x2) */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-y-12 gap-x-20 px-4 max-w-7xl w-full">
@@ -239,6 +242,9 @@ export default function App() {
                         />
                         {error && (
                             <span className="text-red-600 dark:text-red-400 font-medium mt-2 block">{error}</span>
+                        )}
+                        {success && (
+                            <span className="text-blue-600 dark:text-blue-400 font-medium mt-2 block">{success}</span>
                         )}
                         <button
                             type="submit"
