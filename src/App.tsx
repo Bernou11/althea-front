@@ -6,6 +6,8 @@ export default function App() {
     const formRef = useRef<HTMLFormElement>(null);
     const [error, setError] = useState("");
 
+    const api_base = import.meta.env.VITE_API_URL;
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         const form = formRef.current;
@@ -22,7 +24,7 @@ export default function App() {
             setError("Veuillez remplir tous les champs obligatoires.");
         } else {
             setError("");
-            await axios.post('http://localhost:3000/api/messages', { nom, email, phone, message });
+            await axios.post(`${api_base}/api/messages`, { nom, email, phone, message });
             setSuccess("Votre message a bien été envoyé! Nous vous répondrons dans les plus brefs délais");
             form.reset();
         }

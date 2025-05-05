@@ -22,11 +22,13 @@ export default function Messages() {
     const filterBtnRef = useRef<HTMLButtonElement | null>(null);
     const navigate = useNavigate();
 
+    const api_base = import.meta.env.VITE_API_URL;
+
     useEffect(() => {
         const fetchMessages = async () => {
             try {
                 const response = await axios.get<Message[]>(
-                    "http://localhost:3000/api/messages"
+                    `${api_base}/api/messages`
                 );
                 setMessages(response.data);
             } catch (err: any) {

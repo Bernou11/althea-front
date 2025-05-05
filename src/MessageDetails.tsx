@@ -19,10 +19,12 @@ export default function MessageDetail() {
     const [error, setError] = useState<string | null>(null);
     const navigate = useNavigate();
 
+    const api_base = import.meta.env.VITE_API_URL;
+
     useEffect(() => {
         async function fetchDetail() {
             try {
-                const response = await axios.get<Message>(`http://localhost:3000/api/messages/${id}`);
+                const response = await axios.get<Message>(`${api_base}/api/messages/${id}`);
                 setMessage(response.data);
             } catch (e) {
                 setError("Erreur lors du chargement du message.");
