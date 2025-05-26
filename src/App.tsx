@@ -119,20 +119,32 @@ export default function App() {
         return (
             <div className="flex flex-col items-center mx-auto w-full max-w-xs sm:max-w-[400px] md:max-w-lg">
                 <div className="relative w-full h-[250px] sm:w-[400px] sm:h-[350px] overflow-hidden">
-                    <FeatureCard {...features[current]} />
+                    <div
+                        className="flex transition-transform duration-500"
+                        style={{ transform: `translateX(-${current * 100}%)` }}
+                    >
+                        {features.map((feature, idx) => (
+                            <div className="w-full flex-shrink-0" key={idx}>
+                                <FeatureCard {...feature} />
+                            </div>
+                        ))}
+                    </div>
                 </div>
                 <div className="flex justify-center mt-5 gap-4">
                     {features.map((_, idx) => (
                         <button
                             key={idx}
                             onClick={() => goTo(idx)}
-                            className={`w-3 h-3 rounded-full transition border ${current === idx ? "bg-black" : "bg-gray-300"} border-black`}
+                            className={`w-3 h-3 rounded-full transition border ${
+                                current === idx ? "bg-black" : "bg-gray-300"
+                            } border-black`}
                         ></button>
                     ))}
                 </div>
             </div>
         );
     };
+
 
     const AvantagesCard: React.FC<AvantagesCardProps> = ({ text, bg }) => (
         <div className={`flex flex-col items-start justify-between bg-gradient-to-br ${bg} rounded-2xl shadow-md p-7 h-[190px] w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto overflow-hidden`}>
@@ -193,9 +205,9 @@ export default function App() {
                     <img className="ml-3 h-10 md:h-12" src="/flower_butterfly.svg" alt="logo" />
                 </div>
                 <div className="flex items-center justify-center flex-col mb-8 bg-[#FEE8AA] border-b-4 border-yellow-300 rounded-2xl p-6 shadow-bottom">
-                    <span className="italic text-[20px] text-center"> “ Chez ALTHEA, chaque parcours est unique, où écoute, soutien et personnalisation se rencontrent.</span>
-                    <span className="italic text-[20px] text-center">Découvrez l’accompagnement bienveillant et adapté aux troubles du</span>
-                    <span className="italic text-[20px] text-center"> comportement alimentaire : humain, accessible et transformant.“ </span>
+                    <span className="italic text-[20px] text-center dark: text-black"> “ Chez ALTHEA, chaque parcours est unique, où écoute, soutien et personnalisation se rencontrent.</span>
+                    <span className="italic text-[20px] text-center dark: text-black">Découvrez l’accompagnement bienveillant et adapté aux troubles du</span>
+                    <span className="italic text-[20px] text-center dark: text-black"> comportement alimentaire : humain, accessible et transformant.“ </span>
                 </div>
                 <div className="flex flex-col md:flex-row items-center gap-10 lg:gap-24 max-w-7xl mx-auto mt-4">
                     <img src="/equipe.svg" className="w-64 sm:w-80 md:w-96 mx-auto mb-6 md:mb-0" alt="Statistiques" />
@@ -260,8 +272,10 @@ export default function App() {
                     <img className="ml-2 h-10" src="/butterfly.svg" alt="logo" />
                 </div>
                 <div className="w-full max-w-3xl mx-auto bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-5 sm:p-8 flex flex-col sm:flex-row items-center gap-8">
-                    <div className="md:w-1/3 flex justify-center mb-5 md:mb-0">
-                        <p className="text-xl font-comfortaa font-semibold text-center text-gray-900 dark:text-gray-100">Envoyez-nous un message. Nous répondrons avec plaisir !</p>
+                    <div className="w-full sm:w-1/3 flex justify-center mb-5 sm:mb-0">
+                        <p className="text-[23px] font-comfortaa font-semibold text-center text-gray-900 dark:text-gray-100">
+                            Envoyez-nous un message. Nous répondrons avec plaisir !
+                        </p>
                     </div>
                     <form
                         ref={formRef}
@@ -269,19 +283,55 @@ export default function App() {
                         onSubmit={handleSubmit}
                     >
                         <div className="flex flex-col sm:flex-row gap-4">
-                            <input type="text" name="contact-form-name" placeholder="Nom" className="input h-10 p-4 rounded-xl border border-gray-200" required />
-                            <input type="text" name="contact-form-firstname" placeholder="Prénom" className="input h-10 p-4 rounded-xl border border-gray-200" required />
+                            <input
+                                type="text"
+                                name="contact-form-name"
+                                placeholder="Nom"
+                                className="input h-10 p-4 rounded-xl border border-gray-200 w-full sm:w-1/2"
+                                required
+                            />
+                            <input
+                                type="text"
+                                name="contact-form-firstname"
+                                placeholder="Prénom"
+                                className="input h-10 p-4 rounded-xl border border-gray-200 w-full sm:w-1/2"
+                                required
+                            />
                         </div>
                         <div className="flex flex-col sm:flex-row gap-4">
-                            <input type="email" name="contact-form-email" placeholder="Email" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" className="input h-10 p-4 rounded-xl border border-gray-200" required />
-                            <input type="tel" name="contact-form-phone" placeholder="Numéro de téléphone" className="input h-10 p-4 rounded-xl border border-gray-200" pattern="^0[67]\d{8}$" ref={phoneRef} />
+                            <input
+                                type="email"
+                                name="contact-form-email"
+                                placeholder="Email"
+                                pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                                className="input h-10 p-4 rounded-xl border border-gray-200 w-full sm:w-1/2"
+                                required
+                            />
+                            <input
+                                type="tel"
+                                name="contact-form-phone"
+                                placeholder="Téléphone"
+                                className="input h-10 p-4 rounded-xl border border-gray-200 w-full sm:w-1/2"
+                                pattern="^0[67]\d{8}$"
+                                ref={phoneRef}
+                            />
                         </div>
-                        <textarea name="contact-form-message" placeholder="Votre message*" className="h-32 p-4 rounded-xl border border-gray-200" required />
+                        <textarea
+                            name="contact-form-message"
+                            placeholder="Votre message*"
+                            className="h-32 p-4 rounded-xl border border-gray-200 mt-2"
+                            required
+                        />
                         {error && <span className="text-red-600 font-medium mt-2 block">{error}</span>}
                         {success && <span className="text-blue-600 font-medium mt-2 block">{success}</span>}
-                        <button type="submit" className="bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-semibold rounded-2xl px-10 py-4 text-lg sm:text-xl shadow hover:bg-gray-700 dark:hover:bg-gray-100 transition w-full md:w-auto">Envoyer</button>
+                        <button
+                            type="submit"
+                            className="bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-semibold rounded-2xl px-10 py-4 text-lg sm:text-xl shadow hover:bg-gray-700 dark:hover:bg-gray-100 transition w-full md:w-auto">
+                            Envoyer
+                        </button>
                     </form>
                 </div>
+
             </section>
 
             {/* FOOTER */}
@@ -292,9 +342,9 @@ export default function App() {
                         <span className="text-base md:text-lg font-semibold text-gray-700 dark:text-gray-200 text-center md:text-left">L’application qui vous aide à retrouver le bien-être, pas à pas.</span>
                     </div>
                     <div className="flex items-center gap-4">
-                        <a href="https://www.linkedin.com/in/althéa-contact-602566360/" title="Facebook"><img src="/logo_fb.svg" className="h-8 invert dark:invert-0" alt="fb"/></a>
+                        <a href="https://www.facebook.com/share/164XdiK4fe/?mibextid=wwXIfr" title="Facebook"><img src="/logo_fb.svg" className="h-8 invert dark:invert-0" alt="fb"/></a>
                         <a href="https://www.instagram.com/althea.contact?igsh=MWo2a3N0dXV4MmRkZw==" title="Instagram"><img src="/logo_insta.svg" className="h-8 invert dark:invert-0" alt="ig"/></a>
-                        <a href="https://www.facebook.com/share/164XdiK4fe/?mibextid=wwXIfr" title="Linkedin"><img src="/logo_linkedin.svg" className="h-8 invert dark:invert-0" alt="ig"/></a>
+                        <a href="https://www.linkedin.com/in/althéa-contact-602566360/" title="Linkedin"><img src="/logo_linkedin.svg" className="h-8 invert dark:invert-0" alt="ig"/></a>
                     </div>
                 </div>
                 <div className="w-full max-w-6xl border-t border-gray-200 dark:border-gray-700 pt-4 flex flex-col md:flex-row items-center justify-between gap-4">

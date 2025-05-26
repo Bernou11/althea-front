@@ -10,7 +10,8 @@ export default {
         comfortaa: ['"Comfortaa"', 'cursive']
       },
       screens: {
-        'am' : {'min' : '768px', 'max' : '827px'}
+        'am' : {'min' : '768px', 'max' : '827px'},
+        'fs' : {'min' : '639px', 'max' : '799px'}
       }
     }
   },
