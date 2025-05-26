@@ -1,6 +1,33 @@
 import {useEffect, useRef, useState} from "react";
 import "./App.css";
 import axios from "axios";
+import * as React from "react";
+
+interface FeatureCardType {
+    title: string;
+    text: string;
+    bg: string;
+    img: string;
+}
+
+type FeatureCardProps = FeatureCardType;
+
+type FeatureCarouselProps = {
+    features: FeatureCardType[];
+};
+
+type AvantagesCardProps = {
+    text: string;
+    bg: string;
+};
+
+// type ContactFormData = {
+//     email: string;
+//     phone: string;
+//     nom: string;
+//     prenom: string;
+//     message: string;
+// };
 
 export default function App() {
     const formRef = useRef<HTMLFormElement>(null);
@@ -9,7 +36,7 @@ export default function App() {
 
     const api_base = import.meta.env.VITE_API_URL;
 
-    const featureCards = [
+    const featureCards : FeatureCardType[] = [
         {
             title: "Journal intime",
             text: "Besoin de vous exprimer ? Notez ce que vous ressentez dans un journal privé en toute liberté !",
@@ -37,7 +64,7 @@ export default function App() {
     ];
 
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const form = formRef.current;
         if (!form) return;
@@ -58,82 +85,62 @@ export default function App() {
         }
     };
 
-    function FeatureCard({ title , text, bg, img }) {
-        return (
-            <div
-                className={`flex flex-col justify-between bg-gradient-to-br ${bg} rounded-2xl shadow-md p-4 sm:p-7 w-full h-full box-border`}
-                style={{ minWidth: "0" }}
-            >
-                <h2 className="text-center font-comfortaa font-bold text-lg sm:text-2xl mb-2 text-black drop-shadow break-words">
-                    {title}
-                </h2>
-                <p className="text-center font-comfortaa text-black text-base mb-4 break-words">
-                    {text}
-                </p>
-                <img src={img} className="h-20 sm:h-40 self-center opacity-90 drop-shadow-lg max-w-full" alt="" />
-            </div>
-        );
-    }
+    const FeatureCard: React.FC<FeatureCardProps> = ({ title, text, bg, img }) => (
+        <div
+            className={`flex flex-col justify-between bg-gradient-to-br ${bg} rounded-2xl shadow-md p-4 sm:p-7 w-full h-full box-border`}
+            style={{ minWidth: "0" }}
+        >
+            <h2 className="text-center font-comfortaa font-bold text-lg sm:text-2xl mb-2 text-black drop-shadow break-words">
+                {title}
+            </h2>
+            <p className="text-center font-comfortaa text-black text-base mb-4 break-words">
+                {text}
+            </p>
+            <img src={img} className="h-20 sm:h-40 self-center opacity-90 drop-shadow-lg max-w-full" alt="" />
+        </div>
+    );
 
-    function FeatureCarousel({ features }) {
-        const [current, setCurrent] = useState(0);
+    const FeatureCarousel: React.FC<FeatureCarouselProps> = ({ features }) => {
+        const [current, setCurrent] = useState<number>(0);
         const total = features.length;
-        const timeoutRef = useRef(null);
+        const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
         useEffect(() => {
             timeoutRef.current = setTimeout(() => {
-                setCurrent(prev => (prev + 1) % total);
+                setCurrent((prev) => (prev + 1) % total);
             }, 3500);
-            return () => clearTimeout(timeoutRef.current);
+            return () => {
+                if (timeoutRef.current) clearTimeout(timeoutRef.current);
+            };
         }, [current, total]);
 
-        const goTo = idx => setCurrent(idx);
+        const goTo = (idx: number) => setCurrent(idx);
 
         return (
             <div className="flex flex-col items-center mx-auto w-full max-w-xs sm:max-w-[400px] md:max-w-lg">
                 <div className="relative w-full h-[250px] sm:w-[400px] sm:h-[350px] overflow-hidden">
-                    <div
-                        className="flex transition-transform duration-700 ease-in-out h-full"
-                        style={{
-                            width: `${features.length * 100}%`,
-                            transform: `translateX(-${current * (100 / features.length)}%)`,
-                        }}
-                    >
-                        {features.map((card, idx) => (
-                            <div
-                                key={idx}
-                                className="flex-shrink-0 flex-grow-0 h-full"
-                                style={{ width: `${100 / total}%`, minWidth: "0", display: "flex" }}
-                            >
-                                <FeatureCard {...card} />
-                            </div>
-                        ))}
-                    </div>
+                    <FeatureCard {...features[current]} />
                 </div>
-                <div className="flex justify-center mt-3 sm:mt-5 gap-2">
+                <div className="flex justify-center mt-5 gap-4">
                     {features.map((_, idx) => (
                         <button
                             key={idx}
-                            aria-label={`Aller à la carte ${idx + 1}`}
-                            className={`h-2 w-2 rounded-full transition-colors ${idx === current ? "bg-black" : "bg-gray-300"}`}
                             onClick={() => goTo(idx)}
-                        />
+                            className={`w-3 h-3 rounded-full transition border ${current === idx ? "bg-black" : "bg-gray-300"} border-black`}
+                        ></button>
                     ))}
                 </div>
             </div>
         );
-    }
+    };
 
-
-    function AvantagesCard({ text, bg }) {
-        return (
-            <div className={`flex flex-col items-start justify-between bg-gradient-to-br ${bg} rounded-2xl shadow-md p-7 h-[190px] w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto overflow-hidden`}>
-                <h2 className="font-comfortaa text-[24px] text-center sm:text-2xl mb-2 text-black drop-shadow break-words am:text-[20px]">
-                    {text}
-                </h2>
-            </div>
-        );
-    }
+    const AvantagesCard: React.FC<AvantagesCardProps> = ({ text, bg }) => (
+        <div className={`flex flex-col items-start justify-between bg-gradient-to-br ${bg} rounded-2xl shadow-md p-7 h-[190px] w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto overflow-hidden`}>
+            <h2 className="font-comfortaa text-[24px] text-center sm:text-2xl mb-2 text-black drop-shadow break-words am:text-[20px]">
+                {text}
+            </h2>
+        </div>
+    );
 
     const phoneRef = useRef(null);
 
