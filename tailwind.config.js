@@ -8,6 +8,9 @@ export default {
     extend: {
       fontFamily: {
         comfortaa: ['"Comfortaa"', 'cursive']
+      },
+      screens: {
+        'am' : {'min' : '769px', 'max' : '827px'}
       }
     }
   },
