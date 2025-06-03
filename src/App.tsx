@@ -363,7 +363,7 @@ export default function App() {
                     </div>
                 </div>
                 <div className="w-full max-w-6xl border-t border-gray-200 dark:border-gray-700 pt-4 flex flex-col md:flex-row items-center justify-between gap-4">
-                    <span className="text-xs text-gray-500 dark:text-gray-400">&copy; 2024 Althea. Tous droits réservés.</span>
+                    <span className="text-xs text-gray-500 dark:text-gray-400">&copy; 2025 Althea. Tous droits réservés.</span>
                     <div className="flex space-x-5 text-xs">
                         <a href="#" className="text-gray-500 hover:underline">Confidentialité</a>
                         <a href="#" className="text-gray-500 hover:underline">Conditions d’utilisation</a>
