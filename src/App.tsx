@@ -159,44 +159,59 @@ export default function App() {
     return (
         <div className="min-h-screen w-full font-sans bg-gradient-to-b from-white via-[#f6f9fc] to-[#E8EDFF] dark:from-[#0F1017] dark:via-[#1A1B25] dark:to-[#24263b] transition-all duration-500 overflow-hidden">
             {/* HEADER */}
-            <header className="flex flex-col-reverse md:flex-row w-full min-h-screen h-screen pt-0 relative px-3">
+            <header className="flex flex-col-reverse lg:flex-row w-full min-h-screen h-screen pt-0 relative px-3 lg:pr-0 overflow-hidden">
                 {/* Left Side */}
-                <div className="flex flex-col flex-1 px-0 md:px-16 py-8 z-10 justify-center">
+                <div className="flex flex-col flex-1 px-0 lg:px-16 py-8 z-10 justify-center">
                     <a href="/" className="mb-10 block">
                         <img src="/logo.svg" className="h-32 max-h-32 select-none" alt="logo" />
                     </a>
                     <div>
-                        <h1 className="text-3xl sm:text-5xl md:text-[64px] leading-tight font-bold font-comfortaa mb-5 transition-all text-shadow-sm">
+                        <h1 className="text-3xl sm:text-5xl lg:text-[64px] leading-tight font-bold font-comfortaa mb-5 transition-all text-shadow-sm">
                             <span className="block">Une aile, un espoir,</span>
-                            <span className="dark: block md:mt-3">un nouveau départ.</span>
+                            <span className="dark: block lg:mt-3">un nouveau départ.</span>
                         </h1>
-                        <p className="text-base sm:text-lg md:text-2xl mb-8 max-w-2xl leading-relaxed text-gray-800 dark:text-gray-200">
-                            Avec ALTHEA, vous n’êtes plus seul.e dans ce parcours. <br />
+                        <p className="text-base sm:text-lg lg:text-2xl mb-8 max-w-2xl leading-relaxed text-gray-800 dark:text-gray-200">
+                            Avec ALTHEA, vous n'êtes plus seul.e dans ce parcours. <br />
                             Nous sommes là pour vous accompagner, pas à pas, vers un mieux-être.
                         </p>
-                        <a href="#features" className="flex justify-center md:justify-start">
-                            <button className="bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-semibold rounded-2xl px-10 py-4 text-lg sm:text-xl shadow hover:bg-gray-700 dark:hover:bg-gray-100 transition w-full md:w-auto mml: mt-[-20px]">
+                        <a href="#features" className="flex justify-center lg:justify-start">
+                            <button className="bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-semibold rounded-2xl px-10 py-4 text-lg sm:text-xl shadow hover:bg-gray-700 dark:hover:bg-gray-100 transition w-full lg:w-auto mt-[-20px]">
                                 Découvrir
                             </button>
                         </a>
                     </div>
                 </div>
-                {/* Right Side (images, with absolute positioning) */}
-                <div className="hidden md:flex relative flex-1 overflow-hidden min-h-[400px]">
+
+                {/* Right Side Images - Properly sized and positioned */}
+                <div className="hidden lg:flex relative flex-1 overflow-visible min-h-[400px]">
                     {/* Ellipse BG */}
                     <img
                         src="/ellipse.svg"
                         alt=""
-                        className="hidden absolute right-0 left-64 top-[-10%] w-[90%] max-w-[700px] h-[1100px] z-0 pointer-events-none transition-all duration-300 xl:block"
+                        className="
+                          absolute
+                          right-[-10%] top-[-5%]
+                          w-[130%] h-[105%]
+                          object-cover object-left
+                          z-0 pointer-events-none
+                        "
                     />
-                    {/* Phone image */}
+
+                    {/* Phone image - Medium size, not cut off */}
                     <img
                         src="/landingpage_cover_phone.svg"
                         alt="phone"
-                        className="hidden absolute right-[-5px] top-[40px] w-[420px] md:w-[800px] xl:w-[700px] max-w-none h-auto z-10 drop-shadow-xl pointer-events-none transition-all duration-300 xl:block"
+                        className="
+                          absolute
+                          right-[-5%] bottom-0
+                          w-[95%] h-auto
+                          max-w-[700px]
+                          z-10 drop-shadow-xl pointer-events-none
+                        "
                     />
                 </div>
             </header>
+
 
             {/* ABOUT SECTION */}
             <section className="w-full bg-[#FEF3D2] dark:bg-[#FEF3D2] py-14 px-3 flex flex-col items-center transition">
