@@ -357,7 +357,6 @@ export default function App() {
                         <span className="text-base md:text-lg font-semibold text-gray-700 dark:text-gray-200 text-center md:text-left">L’application qui vous aide à retrouver le bien-être, pas à pas.</span>
                     </div>
                     <div className="flex items-center gap-4">
-                        <a href="https://www.facebook.com/share/164XdiK4fe/?mibextid=wwXIfr" title="Facebook"><img src="/logo_fb.svg" className="h-8 invert dark:invert-0" alt="fb"/></a>
                         <a href="https://www.instagram.com/althea.contact?igsh=MWo2a3N0dXV4MmRkZw==" title="Instagram"><img src="/logo_insta.svg" className="h-8 invert dark:invert-0" alt="ig"/></a>
                         <a href="https://www.linkedin.com/in/althéa-contact-602566360/" title="Linkedin"><img src="/logo_linkedin.svg" className="h-8 invert dark:invert-0" alt="ig"/></a>
                     </div>
